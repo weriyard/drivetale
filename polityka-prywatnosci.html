@@ -66,10 +66,15 @@
             Obowiązują wtedy zasady Google
             (<a href="https://policies.google.com/privacy" rel="noopener">https://policies.google.com/privacy</a>).
             Bez klucza nic nie jest wysyłane.</li>
-          <li><strong>Hurtowe ceny paliw ORLEN</strong> – przy tankowaniu i w „Cenach w okolicy” aplikacja najwyżej raz dziennie
+          <li><strong>Ceny maksymalne paliw (gov.pl)</strong> – przy tankowaniu i w „Cenach w okolicy” aplikacja pobiera publiczne
+            komunikaty Ministerstwa Energii o cenach maksymalnych (pakiet CPN) z
+            <a href="https://www.gov.pl" rel="noopener">https://www.gov.pl</a> – najwyżej kilka stron; dopóki nie ma limitu
+            na dziś, ponawia próbę najwyżej co 30 minut. To zwykłe zapytanie bez położenia i bez danych o Tobie, trasach
+            czy aucie; serwer widzi tylko adres IP.</li>
+          <li><strong>Hurtowe ceny paliw ORLEN</strong> – gdy nie ma oficjalnego limitu z gov.pl, aplikacja najwyżej raz dziennie
             pobiera publiczny cennik hurtowy z <a href="https://tool.orlen.pl" rel="noopener">https://tool.orlen.pl</a>
-            (do szacunku ceny maksymalnej na stacjach). To zwykłe zapytanie bez położenia i bez danych o Tobie, trasach czy
-            aucie; serwer widzi tylko adres IP.</li>
+            (tylko do zapasowego szacunku ceny maksymalnej). To zwykłe zapytanie bez położenia i bez danych o Tobie, trasach
+            czy aucie; serwer widzi tylko adres IP.</li>
           <li>Funkcje lokalizacji i wykrywania aktywności korzystają z <strong>Usług Google Play</strong> na telefonie
             (zasady: <a href="https://policies.google.com/privacy" rel="noopener">https://policies.google.com/privacy</a>).</li>
         </ul>
@@ -130,9 +135,13 @@
               trips are not included.</li>
             <li><strong>Nearby fuel prices (optional)</strong> – only if you enter your own Google Places API key, an approximate
               location is sent to Google Places to find stations within 5 km. Without a key nothing is sent.</li>
-            <li><strong>ORLEN wholesale fuel prices</strong> – at most once a day the public wholesale price list is fetched from
-              tool.orlen.pl to estimate maximum station prices; the request contains no location and no data about you, your
-              trips or your car (the server only sees your IP address).</li>
+            <li><strong>Maximum fuel prices (gov.pl)</strong> – when refuelling and in “Nearby prices” the app fetches the public
+              announcements of the Polish Ministry of Energy on maximum fuel prices (CPN package) from www.gov.pl – at most a few
+              pages, retried at most every 30 minutes while there is no limit for today. The request contains no location and no
+              data about you, your trips or your car (the server only sees your IP address).</li>
+            <li><strong>ORLEN wholesale fuel prices</strong> – only as a fallback when there is no official limit from gov.pl: at
+              most once a day the public wholesale price list is fetched from tool.orlen.pl to estimate the maximum price; the
+              request contains no location and no data about you, your trips or your car (the server only sees your IP address).</li>
             <li>Location and activity features use <strong>Google Play services</strong> on the device
               (<a href="https://policies.google.com/privacy" rel="noopener">Google privacy policy</a>).</li>
           </ul>
