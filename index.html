@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drivetale – dziennik jazd</title>
+  <meta name="description" content="Drivetale – dziennik jazd na Androida. Koszty paliwa Twoich tras i porównanie dojazdów: warianty drogi i pory wyjazdu pod względem czasu i spalania. Z OBD – spalanie na żywo.">
+  <meta name="theme-color" content="#0B0F14">
+  <meta property="og:title" content="Drivetale – dziennik jazd">
+  <meta property="og:description" content="Koszty paliwa Twoich tras i porównanie dojazdów. Z OBD – spalanie na żywo.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/demo.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="favicon.svg" alt="" width="30" height="30">Drivetale</a>
+      <nav class="topnav" aria-label="Sekcje strony">
+        <a href="#demo">Demo</a>
+        <a href="#funkcje" class="hide-sm">Funkcje</a>
+        <a href="#obd" class="hide-sm">OBD</a>
+        <a href="#prywatnosc">Prywatność</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <img class="hero-logo" src="favicon.svg" alt="Ikona Drivetale" width="72" height="72">
+        <div class="eyebrow">Aplikacja na Androida · wersja testowa</div>
+        <h1>Drivetale – <span class="accent">dziennik jazd</span></h1>
+        <p class="lead">Koszty paliwa Twoich tras i porównanie dojazdów. Z OBD – spalanie na żywo.
+          Warianty tej samej drogi i pory wyjazdu zestawione pod względem czasu przejazdu i zużycia paliwa.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" id="play-cta" role="link" aria-disabled="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3.5v17a1 1 0 0 0 1.5.86l14.6-8.5a1 1 0 0 0 0-1.72L5.5 2.64A1 1 0 0 0 4 3.5z"/></svg>
+            <span id="play-cta-label">Wkrótce w Google Play</span>
+          </a>
+          <a class="btn" href="#demo">Zobacz demo ekranu jazdy</a>
+        </div>
+        <p class="small muted" style="margin-top:14px">Bez konta. Historia tras zostaje na telefonie.</p>
+      </div>
+    </section>
+
+    <section id="demo" class="demo-section">
+      <div class="wrap">
+        <div class="eyebrow">Ekran jazdy</div>
+        <h2>Tak wygląda jazda na żywo</h2>
+        <p class="lead">Symulowany przejazd przez Warszawę: ruszanie, światła, korek i dojazd. Czas postojów
+          czerwienieje w korku, wykres prędkości zagęszcza się na starcie, a potem przewija.</p>
+
+        <div class="demo" id="demo-root">
+          <div class="demo-tag">Demo – dane przykładowe</div>
+
+          <div class="demo-grid">
+            <!-- Ekran telefonu -->
+            <div class="phone" aria-label="Podgląd ekranu jazdy (demo)">
+              <div class="phone-screen">
+                <div class="ls-top">
+                  <span class="ls-rec"><span class="rec-dot"></span><span id="d-status">Gotowe do startu</span></span>
+                  <span class="ls-time" id="d-elapsed">0:00</span>
+                </div>
+
+                <div class="ls-speed">
+                  <span class="ls-speed-val" id="d-speed">0</span>
+                  <span class="ls-speed-unit">km/h</span>
+                </div>
+                <div class="ls-sub"><span id="d-dist">0,0</span> km · śr. <span id="d-avg">0</span> km/h</div>
+
+                <div class="ls-stop" id="d-stopbox">
+                  <div class="ls-label">CZAS POSTOJÓW</div>
+                  <div class="ls-stop-val" id="d-stop">0:00</div>
+                  <div class="ls-pair">
+                    <span>Postoje <b id="d-stops-sum">0:00</b></span>
+                    <span class="jam">Korki <b id="d-jam-sum">0:00</b></span>
+                  </div>
+                </div>
+
+                <div class="ls-tiles">
+                  <div class="tile">
+                    <div class="ls-label">Spalanie</div>
+                    <div class="tile-val"><span id="d-fuel">–</span> <small>L/100</small></div>
+                    <div class="tile-sub">chwilowo <span id="d-fuel-now">–</span></div>
+                  </div>
+                  <div class="tile">
+                    <div class="ls-label">Koszt</div>
+                    <div class="tile-val"><span id="d-cost">0,00</span> <small>zł</small></div>
+                    <div class="tile-sub"><span id="d-litres">0,00</span> L paliwa</div>
+                  </div>
+                  <div class="tile">
+                    <div class="ls-label">Starty / Stopy</div>
+                    <div class="tile-val"><span id="d-starts">0</span> / <span id="d-halts">0</span></div>
+                    <div class="tile-sub">ruszenia i zatrzymania</div>
+                  </div>
+                </div>
+
+                <div class="ls-chart">
+                  <div class="ls-chart-head"><span class="ls-label">Prędkość · ostatnie 6 min</span><span class="ls-legend"><i class="lg-jam"></i>korek</span></div>
+                  <canvas id="d-chart" height="120" aria-label="Wykres prędkości z ostatnich 6 minut" role="img"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mapa, okienko, sterowanie -->
+            <div class="demo-side">
+              <div class="side-card map-card">
+                <div class="side-head"><span class="ls-label">Trasa</span><span class="small muted">Bielany → Służewiec</span></div>
+                <svg id="d-map" viewBox="0 0 300 300" role="img" aria-label="Przebieg trasy demo (schemat bez podkładu mapy)"></svg>
+                <div class="map-credit">Geometria trasy: © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> (ODbL)</div>
+              </div>
+
+              <div class="pip" aria-label="Pływające okienko (demo)">
+                <div class="pip-head"><span class="ls-label">Okienko nad nawigacją</span></div>
+                <div class="pip-body">
+                  <div class="pip-speed"><span id="p-speed">0</span><small>km/h</small></div>
+                  <div class="pip-stats">
+                    <div><span>jazda</span><b id="p-drive">0:00</b></div>
+                    <div><span>śr.</span><b id="p-avg">0</b></div>
+                    <div><span>koszt</span><b id="p-cost">0,00 zł</b></div>
+                  </div>
+                </div>
+                <svg class="pip-spark" id="p-spark" viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true"><polyline points=""/></svg>
+              </div>
+
+              <div class="controls" role="group" aria-label="Sterowanie demem">
+                <button class="btn" id="c-play" type="button" aria-pressed="false">▶ Start</button>
+                <div class="seg" role="group" aria-label="Tempo odtwarzania">
+                  <button type="button" data-mult="1">x1</button>
+                  <button type="button" data-mult="5" class="on">x5</button>
+                  <button type="button" data-mult="20">x20</button>
+                </div>
+                <button class="btn" id="c-restart" type="button">↺ Od nowa</button>
+              </div>
+              <div class="progress" aria-hidden="true"><div id="d-progress"></div></div>
+              <p class="demo-event small" id="d-event" aria-live="polite">Naciśnij Start, żeby odtworzyć przejazd.</p>
+            </div>
+          </div>
+          <p class="small muted demo-foot">Demo – dane przykładowe: przebieg prędkości, spalanie i cena paliwa
+            (<span id="d-price">6,49</span> zł/L) są symulowane w przeglądarce. W aplikacji spalanie i koszt pochodzą
+            z odczytów kostki OBD albo z szacunku oznaczonego w aplikacji.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="funkcje">
+      <div class="wrap">
+        <div class="eyebrow">Funkcje</div>
+        <h2>Co widać o swoich jazdach</h2>
+        <p class="lead">Po konfiguracji Drivetale zapisuje trasy automatycznie. Działa bez konta.</p>
+        <div class="grid">
+          <article class="card">
+            <h3><span class="dot" style="background:var(--cyan)"></span>Trasy zapisują się same</h3>
+            <ul>
+              <li>Nagrywanie startuje automatycznie – po połączeniu z Bluetooth auta albo gdy telefon wykryje jazdę.</li>
+              <li>Podsumowanie po każdej jeździe, np. „o 3 min szybciej niż zwykle”.</li>
+              <li>Pływające okienko z prędkością i kosztem – nad nawigacją.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3><span class="dot" style="background:var(--amber)"></span>Koszty paliwa</h3>
+            <ul>
+              <li>Koszt paliwa każdej trasy – z odczytów kostki OBD albo z szacunku (oznaczonego w aplikacji).</li>
+              <li>Podpowiedź tankowania do potwierdzenia – z kostką po wzroście poziomu paliwa, bez kostki po postoju przy znanej stacji.</li>
+              <li>Rzeczywiste spalanie między tankowaniami do pełna.</li>
+              <li>Wydatki w kolejnych miesiącach i miesięczny raport PDF.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3><span class="dot" style="background:var(--violet)"></span>Codzienne dojazdy</h3>
+            <ul>
+              <li>Porównanie czasu i zużycia paliwa na dojazdach – warianty tej samej trasy przy podobnej porze wyjazdu.</li>
+              <li>Korki, pora wyjazdu i przewidywany czas dojazdu z historii.</li>
+              <li>Gdzie ucieka czas i paliwo: ostre hamowania, przyspieszenia i długie postoje na mapie.</li>
+              <li>Kilometrówka do PDF / CSV.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3><span class="dot" style="background:var(--emerald)"></span>Funkcje dodatkowe</h3>
+            <ul>
+              <li>Ceny ze stacji w okolicy – z własnym kluczem Google Places (Ustawienia).</li>
+              <li>Kopia zapasowa ręcznie albo automatycznie co tydzień do wybranego folderu.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="obd">
+      <div class="wrap">
+        <div class="eyebrow">Opcjonalnie</div>
+        <h2>Z adapterem OBD-II – więcej danych z auta</h2>
+        <p class="lead">Kostka ELM327 Bluetooth nie jest wymagana. Z nią ekran jazdy pokazuje dane prosto z auta.</p>
+        <div class="grid">
+          <article class="card">
+            <h3><span class="dot" style="background:var(--cyan)"></span>Na żywo</h3>
+            <ul><li>Spalanie na żywo, bieg i wskaźnik stylu jazdy.</li></ul>
+          </article>
+          <article class="card">
+            <h3><span class="dot" style="background:var(--emerald)"></span>Stan auta</h3>
+            <ul><li>Akumulator i ładowanie, temperatura płynu, korekty paliwa, kody błędów z opisem.</li></ul>
+          </article>
+          <article class="card">
+            <h3><span class="dot" style="background:var(--rose)"></span>Ostrzeżenia w trakcie jazdy</h3>
+            <ul><li>Przegrzanie, brak ładowania, kontrolka silnika.</li></ul>
+          </article>
+        </div>
+        <p class="note" style="margin-top:20px">Aplikacja nie zastępuje diagnostyki warsztatowej – oceny stanu auta to wskazówki na podstawie danych z OBD.</p>
+      </div>
+    </section>
+
+    <section id="o-projekcie">
+      <div class="wrap narrow">
+        <div class="eyebrow">O projekcie</div>
+        <h2>Skąd Drivetale</h2>
+        <p>Drivetale powstaje jako aplikacja na Androida do automatycznego zapisu przejazdów i analizy dystansu,
+          zużycia paliwa oraz kosztów eksploatacji – na podstawie GPS, opcjonalnych danych OBD-II i historii tankowań.
+          Celem jest kontrola wydatków i lepszy wybór tras pokonywanych wiele razy w miesiącu: warianty drogi
+          i godziny wyjazdu zestawione pod względem czasu przejazdu i zużycia paliwa. Aplikacja jest w fazie rozwoju
+          i testów – działa wersja testowa, w Google Play jeszcze jej nie ma.</p>
+        <p>Już dziś przy tankowaniu widać ceny ze stacji w okolicy (Google Places, wyłącznie z własnym kluczem API)
+          oraz szacunek ceny maksymalnej na stacjach z publicznego cennika hurtowego ORLEN. Szersza integracja
+          z serwisami cen paliw – tak, żeby łatwiej wybierać korzystniejsze miejsca tankowania – to kierunek
+          dalszego rozwoju, a nie gotowa funkcja.</p>
+      </div>
+    </section>
+
+    <section id="prywatnosc">
+      <div class="wrap narrow">
+        <div class="eyebrow">Prywatność</div>
+        <h2>Bez konta. Trasy zostają na telefonie.</h2>
+        <ul class="privacy-list">
+          <li><b>Historia tras nie jest wysyłana</b> – wychodzi z telefonu tylko przy eksporcie (GPX / CSV / PDF), kopii zapasowej do wybranego folderu albo udostępnieniu dziennika.</li>
+          <li><b>Bez własnego serwera i analityki</b> – dane nie są sprzedawane ani udostępniane.</li>
+          <li><b>Usługi sieciowe</b>: kafelki map z OpenStreetMap, nazwy miejsc z systemowego Geocodera Androida, opcjonalnie ceny stacji z Google Places (tylko z własnym kluczem) i raz dziennie publiczny cennik hurtowy ORLEN (bez położenia).</li>
+          <li><b>Ta strona</b> nie używa ciasteczek ani narzędzi analitycznych.</li>
+        </ul>
+        <p><a class="btn" href="polityka-prywatnosci.html">Pełna polityka prywatności →</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>© Drivetale · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="polityka-prywatnosci.html#en">Privacy policy (EN)</a></div>
+      <div>Kontakt: <span class="placeholder" title="Do uzupełnienia przed publikacją">[adres e-mail kontaktowy]</span></div>
+      <div class="small">Trasa demo: © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> (ODbL)</div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+  <script src="assets/route.js"></script>
+  <script src="assets/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+/* Drivetale – wspólne style strony (kolory jak w ciemnym motywie aplikacji) */
+:root {
+  color-scheme: dark;
+  --bg: #0B0F14;
+  --bg-2: #10161D;
+  --surface: #1A222C;
+  --line: #26303B;
+  --text: #E6EDF3;
+  --muted: #8B98A5;
+  --cyan: #22D3EE;
+  --violet: #A78BFA;
+  --amber: #F59E0B;
+  --emerald: #34D399;
+  --rose: #F43F5E;
+  --radius: 16px;
+  --gutter: 16px;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 var(--font);
+  overflow-x: hidden;
+}
+img, svg, canvas { max-width: 100%; }
+a { color: var(--cyan); text-underline-offset: 3px; }
+a:hover { color: #67E8F9; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 4px; }
+
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
+.narrow { max-width: 760px; }
+
+/* Nagłówek */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(11, 15, 20, .85);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 56px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: -.01em; }
+.brand img { width: 30px; height: 30px; border-radius: 8px; }
+.topnav { display: flex; gap: 18px; font-size: 14px; }
+.topnav a { color: var(--muted); text-decoration: none; }
+.topnav a:hover { color: var(--text); }
+@media (max-width: 640px) { .topnav .hide-sm { display: none; } }
+
+/* Sekcje */
+section { padding: 64px 0; }
+section + section { border-top: 1px solid var(--line); }
+h1, h2, h3 { line-height: 1.2; letter-spacing: -.02em; margin: 0 0 .5em; }
+h1 { font-size: clamp(32px, 6vw, 56px); }
+h2 { font-size: clamp(24px, 4vw, 34px); }
+h3 { font-size: 18px; }
+p { margin: 0 0 1em; }
+.lead { font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); max-width: 640px; }
+.eyebrow { font: 600 12px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+
+/* Hero */
+.hero { padding: 56px 0 48px; background:
+  radial-gradient(600px 300px at 15% 0%, rgba(34, 211, 238, .12), transparent 70%),
+  radial-gradient(500px 300px at 90% 10%, rgba(167, 139, 250, .12), transparent 70%); }
+.hero h1 .accent { background: linear-gradient(90deg, var(--cyan), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-logo { width: 72px; height: 72px; border-radius: 18px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(34, 211, 238, .15); }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 24px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 20px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--text); font: 600 15px/1 var(--font);
+  text-decoration: none; cursor: pointer;
+}
+.btn:hover { border-color: var(--cyan); color: var(--text); }
+.btn-primary { background: linear-gradient(90deg, var(--cyan), var(--violet)); color: #0B0F14; border: 0; }
+.btn-primary:hover { color: #0B0F14; filter: brightness(1.08); }
+.btn[aria-disabled="true"] { cursor: default; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: rgba(245, 158, 11, .14); color: var(--amber); }
+
+/* Karty funkcji */
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.card h3 { display: flex; align-items: center; gap: 10px; }
+.card ul { margin: 0; padding-left: 18px; color: var(--muted); }
+.card li { margin: 6px 0; }
+.card li strong { color: var(--text); font-weight: 600; }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.note { border-left: 3px solid var(--amber); padding: 10px 14px; background: rgba(245, 158, 11, .07); border-radius: 0 10px 10px 0; color: var(--muted); font-size: 14px; }
+
+/* Stopka */
+footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
+footer a { color: var(--muted); }
+.placeholder { background: rgba(244, 63, 94, .14); color: #FDA4AF; border: 1px dashed rgba(244, 63, 94, .6); border-radius: 6px; padding: 0 6px; font-family: var(--mono); font-size: .9em; white-space: nowrap; }
+
+/* Treść polityki */
+.doc h1 { font-size: clamp(28px, 5vw, 40px); }
+.doc h2 { font-size: 22px; margin-top: 2em; }
+.doc ul { padding-left: 20px; }
+.doc li { margin: 8px 0; }
+.doc hr { border: 0; border-top: 1px solid var(--line); margin: 48px 0; }
+.doc .meta { color: var(--muted); font-size: 15px; }
+.doc a { word-break: break-word; }
