@@ -9,14 +9,13 @@ Bez kroku budowania, bez trackerów, analityki i ciasteczek. Jedyny zewnętrzny 
 
 | Plik | Opis |
 |---|---|
-| `index.html` | Strona główna (PL): opis, funkcje, OBD, o projekcie, prywatność, interaktywne demo ekranu jazdy |
+| `index.html` | Strona główna (PL): zrzuty ekranu, ekran jazdy, funkcje, OBD, o projekcie, prywatność |
 | `polityka-prywatnosci.html` | Polityka prywatności (PL, potem EN – kotwica `#en`) |
 | `404.html` | Strona błędu (style wbudowane, link do `/drivetale/`) |
 | `favicon.svg` | Ikona – wektor z ikony aplikacji |
-| `assets/style.css`, `assets/demo.css` | Style |
+| `assets/style.css`, `assets/gallery.css` | Style (galeria zrzutów w ramce telefonu) |
 | `assets/site.js` | Ustawienia strony, m.in. `PLAY_STORE_URL` |
-| `assets/demo.js` | Symulacja przejazdu dla dema (dane przykładowe) |
-| `assets/route.js` | Geometria trasy demo – © OpenStreetMap contributors (ODbL) |
+| `assets/shots/*.jpg` | Prawdziwe zrzuty ekranu aplikacji (tryb demo, emulator Android 16), zmniejszone do 720 px |
 | `.nojekyll` | Wyłącza Jekyll w GitHub Pages |
 
 Wszystkie odnośniki są względne, więc strona działa pod `/drivetale/` i lokalnie
@@ -38,4 +37,5 @@ Wszystkie odnośniki są względne, więc strona działa pod `/drivetale/` i lok
 ## Źródła treści
 
 Opis funkcji: `docs/play/store-listing.md`, polityka: `docs/play/privacy-policy.md` (gałąź `play-release`
-repozytorium DailyCarTracker). Trasa demo: `demo/DemoRoutes.kt` (wariant „przez centrum”).
+repozytorium DailyCarTracker). Zrzuty ekranu: test `StoreScreenshotsTest` na emulatorze w CI, pliki PNG na gałęzi
+`ci-screenshots` repozytorium DailyCarTracker (mapy © OpenStreetMap contributors).

@@ -14,14 +14,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
   <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/demo.css">
+  <link rel="stylesheet" href="assets/gallery.css">
 </head>
 <body>
   <header class="topbar">
     <div class="wrap">
       <a class="brand" href="./"><img src="favicon.svg" alt="" width="30" height="30">Drivetale</a>
       <nav class="topnav" aria-label="Sekcje strony">
-        <a href="#demo">Demo</a>
+        <a href="#zrzuty">Zrzuty</a>
         <a href="#funkcje" class="hide-sm">Funkcje</a>
         <a href="#obd" class="hide-sm">OBD</a>
         <a href="#prywatnosc">Prywatność</a>
@@ -42,108 +42,71 @@
             <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3.5v17a1 1 0 0 0 1.5.86l14.6-8.5a1 1 0 0 0 0-1.72L5.5 2.64A1 1 0 0 0 4 3.5z"/></svg>
             <span id="play-cta-label">Wkrótce w Google Play</span>
           </a>
-          <a class="btn" href="#demo">Zobacz demo ekranu jazdy</a>
+          <a class="btn" href="#zrzuty">Zobacz zrzuty ekranu</a>
         </div>
         <p class="small muted" style="margin-top:14px">Bez konta. Historia tras zostaje na telefonie.</p>
       </div>
     </section>
 
-    <section id="demo" class="demo-section">
+    <section id="zrzuty">
+      <div class="wrap">
+        <div class="eyebrow">Zrzuty ekranu</div>
+        <h2>Tak wygląda aplikacja</h2>
+        <p class="lead">Ekrany prosto z aplikacji, bez retuszu – w trybie demo z przykładowymi trasami po Warszawie.</p>
+        <div class="shots-tag">Zrzuty z trybu demo – dane przykładowe</div>
+        <ul class="gallery" aria-label="Zrzuty ekranu aplikacji">
+          <li>
+            <figure><div class="device"><a href="assets/shots/trasy.jpg"><img src="assets/shots/trasy.jpg" alt="Lista tras w aplikacji Drivetale" width="720" height="1600" decoding="async"></a></div>
+            <figcaption><b>Jazdy zapisują się automatycznie</b><span>Lista tras z dystansem, czasem, spalaniem i kosztem – z podziałem na kategorie.</span></figcaption></figure>
+          </li>
+          <li>
+            <figure><div class="device"><a href="assets/shots/trasa.jpg"><img src="assets/shots/trasa.jpg" alt="Szczegóły trasy z mapą i wykresem prędkości" width="720" height="1600" decoding="async"></a></div>
+            <figcaption><b>Każda trasa na mapie</b><span>Przebieg kolorowany prędkością, wykres jazdy i ocena stylu jazdy.</span></figcaption></figure>
+          </li>
+          <li>
+            <figure><div class="device"><a href="assets/shots/porownanie.jpg"><img src="assets/shots/porownanie.jpg" alt="Porównanie dwóch wariantów dojazdu z mapą i wnioskami" width="720" height="1600" decoding="async"></a></div>
+            <figcaption><b>Porównanie codziennych dojazdów</b><span>Warianty tej samej trasy na mapie i wnioski: szybciej, taniej, mniej ruszeń.</span></figcaption></figure>
+          </li>
+          <li>
+            <figure><div class="device"><a href="assets/shots/statystyki.jpg"><img src="assets/shots/statystyki.jpg" alt="Statystyki miesiąca z kosztem i wykresem dni" width="720" height="1600" loading="lazy" decoding="async"></a></div>
+            <figcaption><b>Wydatki w kolejnych miesiącach</b><span>Dystans, paliwo i koszt miesiąca, porównanie z poprzednim okresem.</span></figcaption></figure>
+          </li>
+          <li>
+            <figure><div class="device"><a href="assets/shots/jazda.jpg"><img src="assets/shots/jazda.jpg" alt="Ekran jazdy z prędkościomierzem, wykresem i czasem postojów" width="720" height="1600" loading="lazy" decoding="async"></a></div>
+            <figcaption><b>Z OBD: spalanie i dane auta na żywo</b><span>Prędkość, spalanie, bieg, koszt i czas postojów w trakcie jazdy.</span></figcaption></figure>
+          </li>
+          <li>
+            <figure><div class="device"><a href="assets/shots/eksport.jpg"><img src="assets/shots/eksport.jpg" alt="Okno ewidencji przebiegu z eksportem do PDF i CSV" width="720" height="1600" loading="lazy" decoding="async"></a></div>
+            <figcaption><b>Kilometrówka do PDF i CSV</b><span>Miesięczna ewidencja przebiegu wybranej kategorii tras.</span></figcaption></figure>
+          </li>
+        </ul>
+        <p class="small muted gallery-hint">Przesuń w bok, żeby zobaczyć kolejne ekrany. Dotknięcie otwiera zrzut w pełnym rozmiarze.</p>
+        <p class="small muted">Mapy: © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a>.</p>
+      </div>
+    </section>
+
+    <section id="jazda">
       <div class="wrap">
         <div class="eyebrow">Ekran jazdy</div>
-        <h2>Tak wygląda jazda na żywo</h2>
-        <p class="lead">Symulowany przejazd przez Warszawę: ruszanie, światła, korek i dojazd. Czas postojów
-          czerwienieje w korku, wykres prędkości zagęszcza się na starcie, a potem przewija.</p>
-
-        <div class="demo" id="demo-root">
-          <div class="demo-tag">Demo – dane przykładowe</div>
-
-          <div class="demo-grid">
-            <!-- Ekran telefonu -->
-            <div class="phone" aria-label="Podgląd ekranu jazdy (demo)">
-              <div class="phone-screen">
-                <div class="ls-top">
-                  <span class="ls-rec"><span class="rec-dot"></span><span id="d-status">Gotowe do startu</span></span>
-                  <span class="ls-time" id="d-elapsed">0:00</span>
-                </div>
-
-                <div class="ls-speed">
-                  <span class="ls-speed-val" id="d-speed">0</span>
-                  <span class="ls-speed-unit">km/h</span>
-                </div>
-                <div class="ls-sub"><span id="d-dist">0,0</span> km · śr. <span id="d-avg">0</span> km/h</div>
-
-                <div class="ls-stop" id="d-stopbox">
-                  <div class="ls-label">CZAS POSTOJÓW</div>
-                  <div class="ls-stop-val" id="d-stop">0:00</div>
-                  <div class="ls-pair">
-                    <span>Postoje <b id="d-stops-sum">0:00</b></span>
-                    <span class="jam">Korki <b id="d-jam-sum">0:00</b></span>
-                  </div>
-                </div>
-
-                <div class="ls-tiles">
-                  <div class="tile">
-                    <div class="ls-label">Spalanie</div>
-                    <div class="tile-val"><span id="d-fuel">–</span> <small>L/100</small></div>
-                    <div class="tile-sub">chwilowo <span id="d-fuel-now">–</span></div>
-                  </div>
-                  <div class="tile">
-                    <div class="ls-label">Koszt</div>
-                    <div class="tile-val"><span id="d-cost">0,00</span> <small>zł</small></div>
-                    <div class="tile-sub"><span id="d-litres">0,00</span> L paliwa</div>
-                  </div>
-                  <div class="tile">
-                    <div class="ls-label">Starty / Stopy</div>
-                    <div class="tile-val"><span id="d-starts">0</span> / <span id="d-halts">0</span></div>
-                    <div class="tile-sub">ruszenia i zatrzymania</div>
-                  </div>
-                </div>
-
-                <div class="ls-chart">
-                  <div class="ls-chart-head"><span class="ls-label">Prędkość · ostatnie 6 min</span><span class="ls-legend"><i class="lg-jam"></i>korek</span></div>
-                  <canvas id="d-chart" height="120" aria-label="Wykres prędkości z ostatnich 6 minut" role="img"></canvas>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mapa, okienko, sterowanie -->
-            <div class="demo-side">
-              <div class="side-card map-card">
-                <div class="side-head"><span class="ls-label">Trasa</span><span class="small muted">Bielany → Służewiec</span></div>
-                <svg id="d-map" viewBox="0 0 300 300" role="img" aria-label="Przebieg trasy demo (schemat bez podkładu mapy)"></svg>
-                <div class="map-credit">Geometria trasy: © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> (ODbL)</div>
-              </div>
-
-              <div class="pip" aria-label="Pływające okienko (demo)">
-                <div class="pip-head"><span class="ls-label">Okienko nad nawigacją</span></div>
-                <div class="pip-body">
-                  <div class="pip-speed"><span id="p-speed">0</span><small>km/h</small></div>
-                  <div class="pip-stats">
-                    <div><span>jazda</span><b id="p-drive">0:00</b></div>
-                    <div><span>śr.</span><b id="p-avg">0</b></div>
-                    <div><span>koszt</span><b id="p-cost">0,00 zł</b></div>
-                  </div>
-                </div>
-                <svg class="pip-spark" id="p-spark" viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true"><polyline points=""/></svg>
-              </div>
-
-              <div class="controls" role="group" aria-label="Sterowanie demem">
-                <button class="btn" id="c-play" type="button" aria-pressed="false">▶ Start</button>
-                <div class="seg" role="group" aria-label="Tempo odtwarzania">
-                  <button type="button" data-mult="1">x1</button>
-                  <button type="button" data-mult="5" class="on">x5</button>
-                  <button type="button" data-mult="20">x20</button>
-                </div>
-                <button class="btn" id="c-restart" type="button">↺ Od nowa</button>
-              </div>
-              <div class="progress" aria-hidden="true"><div id="d-progress"></div></div>
-              <p class="demo-event small" id="d-event" aria-live="polite">Naciśnij Start, żeby odtworzyć przejazd.</p>
-            </div>
+        <h2>Jazda na żywo</h2>
+        <p class="lead">Zrzut z emulatora w trakcie jazdy testowej: kostka OBD z symulatora, pozycja z testowego GPS.</p>
+        <div class="drive">
+          <div class="drive-shots">
+            <figure>
+              <div class="device"><a href="assets/shots/jazda-obd.jpg"><img src="assets/shots/jazda-obd.jpg" alt="Ekran jazdy z odczytami kostki OBD (symulator)" width="720" height="1600" loading="lazy" decoding="async"></a></div>
+              <figcaption>Odczyty kostki OBD</figcaption>
+            </figure>
+            <figure>
+              <div class="device device-pip"><a href="assets/shots/okienko.jpg"><img src="assets/shots/okienko.jpg" alt="Pływające okienko z prędkością, czasem jazdy i kosztem" width="540" height="400" loading="lazy" decoding="async"></a></div>
+              <figcaption>Pływające okienko nad innymi aplikacjami</figcaption>
+            </figure>
           </div>
-          <p class="small muted demo-foot">Demo – dane przykładowe: przebieg prędkości, spalanie i cena paliwa
-            (<span id="d-price">6,49</span> zł/L) są symulowane w przeglądarce. W aplikacji spalanie i koszt pochodzą
-            z odczytów kostki OBD albo z szacunku oznaczonego w aplikacji.</p>
+          <ul class="drive-points">
+            <li><b>Prędkość i spalanie</b><span>Z kostką OBD – spalanie chwilowe i średnie, bieg i koszt przejazdu na bieżąco.</span></li>
+            <li><b>Czas postojów</b><span>Postoje i korki liczone osobno – widać, ile trwała jazda, a ile stanie.</span></li>
+            <li><b>Wykres</b><span>Prędkość i spalanie z ostatnich 6 minut albo z całej trasy.</span></li>
+            <li><b>Pływające okienko</b><span>Po wyjściu z aplikacji w trakcie trasy – nad nawigacją, z prędkością i kosztem.</span></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -249,12 +212,10 @@
     <div class="wrap">
       <div>© Drivetale · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="polityka-prywatnosci.html#en">Privacy policy (EN)</a></div>
       <div>Kontakt: <span class="placeholder" title="Do uzupełnienia przed publikacją">[adres e-mail kontaktowy]</span></div>
-      <div class="small">Trasa demo: © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> (ODbL)</div>
+      <div class="small">Mapy na zrzutach ekranu: © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a></div>
     </div>
   </footer>
 
   <script src="assets/site.js"></script>
-  <script src="assets/route.js"></script>
-  <script src="assets/demo.js"></script>
 </body>
 </html>
